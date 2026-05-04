@@ -76,6 +76,7 @@ restartButton.addEventListener('click', restartQuiz)
 
 function startQuiz() {
     // reset Variables
+    score = 0
     currentQuestionIndex = 0
     scoreSpan.textContent = 0
 
@@ -85,7 +86,7 @@ function startQuiz() {
     showQuestion()
 }
 
-function showQuestion(){
+function showQuestion() {
     // reset State
     answersDisabled = false
     const currentQuestion = quizQuestions[currentQuestionIndex]
@@ -105,13 +106,13 @@ function showQuestion(){
 
         button.dataset.correct = answer.correct
 
-        button.addEventListener('click',selectAnswer)
+        button.addEventListener('click', selectAnswer)
 
         answersContainer.appendChild(button)
     })
 }
 
-function selectAnswer(e){
+function selectAnswer(e) {
     if (answersDisabled === true) return
 
     answersDisabled = true
@@ -120,64 +121,65 @@ function selectAnswer(e){
     const isCorrect = selectedButton.dataset.correct === 'true'
 
     Array.from(answersContainer.children).forEach(button => {
-        if(button.dataset.correct === 'true'){
+        if (button.dataset.correct === 'true') {
             button.classList.add('correct')
-        }else{
+        } else {
             button.classList.add('incorrect')
         }
     })
 
-    if(isCorrect){
+    if (isCorrect) {
         score++
         scoreSpan.textContent = score
 
         setTimeout(() => {
             currentQuestionIndex++
 
-            if(currentQuestionIndex < quizQuestions.length){
+            if (currentQuestionIndex < quizQuestions.length) {
                 showQuestion()
             }
-            else{
+            else {
                 showResults()
             }
         }, 1000);
     }
-    else{
+    else {
         setTimeout(() => {
             currentQuestionIndex++
 
-            if(currentQuestionIndex < quizQuestions.length){
+            if (currentQuestionIndex < quizQuestions.length) {
                 showQuestion()
             }
-            else{
+            else {
                 showResults()
             }
         }, 1000);
     }
 }
 
-function showResults(){
+function showResults() {
     quizScreen.classList.remove('active')
     resultScreen.classList.add('active')
 
     finalScoreSpan.textContent = score
 
-    const percentage = (score/quizQuestions.length) * 100
+    const percentage = (score / quizQuestions.length) * 100
 
-    if(percentage === 100){
+    if (percentage === 100) {
         resultMessage.textContent = 'Winner Genius'
-    }else if(percentage >= 80){
+    } else if (percentage >= 80) {
         resultMessage.textContent = 'Great Job '
-    }else if(percentage >= 60){
+    } else if (percentage >= 60) {
         resultMessage.textContent = 'Good Effort '
-    }else if(percentage >= 40){
+    } else if (percentage >= 40) {
         resultMessage.textContent = 'Not Bad Stupid Bitch '
-    }else{
+    } else {
         resultMessage.textContent = 'Stupid Bitch '
     }
 }
 
 function restartQuiz() {
+    resultScreen.classList.remove('active')
     resultMessage.textContent = ''
     finalScoreSpan.textContent = ''
     startQuiz()
