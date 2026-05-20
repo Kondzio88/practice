@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Keto Food Planer</title>
+	</head>
+	<body>
+		<!-- Main Container -->
+		<div class="container">
+			<!-- Pop Up Info Box -->
+
+			<div class="pop-up-box">
+				<p><i data-lucide="check"></i> Posiłek dodany</p>
+			</div>
+
+			<div class="box">
+				<div class="input-container">
+					<!-- Input Container -->
+
+					<div class="input-box">
+						<div class="input-field">
+							<label for="food">Nazwa Posiłku</label>
+							<input name="food" id="food" type="text" placeholder="Podaj nazwe posiłku" />
+						</div>
+
+						<div class="input-field">
+							<label for="protein">Białko</label>
+							<input name="protein" id="protein" type="number" placeholder="Podaj ilość białka" />
+						</div>
+
+						<div class="input-field">
+							<label for="carbo">Węglowodany</label>
+							<input name="carbo" id="carb" type="number" placeholder="Podaj ilośc węgli" />
+						</div>
+
+						<div class="input-field">
+							<label for="fat">Tłuszcze</label>
+							<input name="fat" id="fat" type="number" placeholder="Podaj nazwe tłuszczu" />
+						</div>
+					</div>
+
+					<button class="add-btn">Dodaj posiłek</button>
+				</div>
+
+				<!-- Display container -->
+
+				<div class="display-container">
+					<h1 class="display-food-text">Nie ma przygotowanego posiłku</h1>
+
+					<div class="box-meal-display">
+						<!-- Create in Js -->
+					</div>
+					<button class="display-btn">Wyświetl posiłek</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<script src="app.js" type="module"></script>
+	</body>
+</html>
