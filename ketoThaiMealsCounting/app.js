@@ -32,7 +32,7 @@ const app = () => {
         const fat = Number(fatInp.value);
 
         if (!foodName.value || !proteinInp.value || !carbInp.value || !fatInp.value) {
-            alert('podaj Wszystkie skladniki')
+            popUpFunc(`<p><i data-lucide="x"></i> Podaj dane</p>`,false)
             return
         }
 
@@ -55,10 +55,7 @@ const app = () => {
             carbInp.value = ''
             fatInp.value = ''
 
-            popUp.classList.add('active')
-            setTimeout(() => {
-                popUp.classList.remove('active')
-            }, 2500)
+            popUpFunc(`<p><i data-lucide="check"></i> Posiłek dodany</p>`, true)
         }
     }
 
@@ -96,6 +93,7 @@ const app = () => {
     const displayfunction = (list) => {
 
         if (mealList.length === 0) {
+            popUpFunc(`<p><i data-lucide="x"></i> Nie ma posiłku</p>`,false)
             return
         }
 
@@ -119,9 +117,29 @@ const app = () => {
                                 <p class="text">${el.totalKcal} <span>Kcal</span> <i data-lucide="flame"></i></p>
                                 </div>`
             mealBoxDisplay.appendChild(mealDiv)
-            lucide.createIcons()
         }
         );
+        lucide.createIcons()
+    }
+
+    // Pop Up Function
+
+    const popUpFunc = (message, bool) => {
+        if (bool === true) {
+            popUp.style.border = 'solid 1px #6bfb04'
+            popUp.style.color = '#6bfb04'
+        } else {
+            popUp.style.border = 'solid 1px #ed0739'
+            popUp.style.color = '#ed0739'
+        }
+        popUp.classList.add('active')
+        popUp.innerHTML = ''
+        popUp.innerHTML = `${message}`
+        setTimeout(() => {
+            popUp.classList.remove('active')
+        }, 2500)
+
+        lucide.createIcons()
     }
 
     // Fetch image set
